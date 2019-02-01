@@ -2,7 +2,7 @@ name := "scamandrill"
 
 organization := "io.github.scamandrill"
 
-bintrayOrganization := Some("scamandrill")
+bintrayOrganization := Some("papercultureoss")
 
 bintrayRepository := "scamandrill"
 
