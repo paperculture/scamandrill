@@ -46,7 +46,7 @@ case object APIKey extends SimpleLogger{
   }
 
   def defaultKey = {
-    Configuration(ConfigFactory.load("application.conf")).getString("mandrill.key").getOrElse {
+    Configuration(ConfigFactory.load).getString("mandrill.key").getOrElse {
       logger.error("Unable to locate mandrill.key in application.conf")
       ""
     }
