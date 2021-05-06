@@ -2,11 +2,7 @@ name := "scamandrill"
 
 organization := "io.github.scamandrill"
 
-bintrayOrganization := Some("papercultureoss")
-
-bintrayRepository := "scamandrill"
-
-bintrayReleaseOnPublish in ThisBuild := false
+lazy val root = project.in(file("."))
 
 licenses += ("Apache-2.0", url("https://spdx.org/licenses/Apache-2.0"))
 
@@ -34,6 +30,12 @@ libraryDependencies ++= {
   )
 }
 
+githubOwner := "paperculture"
+
+githubRepository := "scamandrill"
+
+githubTokenSource := TokenSource.GitConfig("github.token")
+
 publishArtifact in Test := false
 
 publishMavenStyle := true
@@ -59,3 +61,9 @@ pomExtra :=
         <url>https://graingert.co.uk/</url>
       </developer>
     </developers>
+
+publishTo := githubPublishTo.value
+
+publishConfiguration := publishConfiguration.value.withOverwrite(true)
+
+publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true)
