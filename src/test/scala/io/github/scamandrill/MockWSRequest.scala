@@ -24,7 +24,7 @@ case class MockWSRequest(
   calc: Option[WSSignatureCalculator],
   url: String,
   uri: URI,
-  requestTimeout: Option[Int]
+  requestTimeout: Option[Duration]
 ) extends StandaloneWSRequest {
 
   override type Self = MockWSRequest
@@ -60,7 +60,7 @@ case class MockWSRequest(
 
   override def execute(): Future[Response] = this.test(this)
 
-  override def withRequestTimeout(timeout: Duration): Self = this.copy(requestTimeout = Some(timeout.toSeconds.toInt))
+  override def withRequestTimeout(timeout: Duration): Self = this.copy(requestTimeout = Some(timeout))
 
   override def withProxyServer(proxyServer: WSProxyServer): Self = this
 
@@ -75,6 +75,8 @@ case class MockWSRequest(
   override def get(): Future[Response] = this.execute("GET")
 
   override def withVirtualHost(vh: String): Self = this.copy(virtualHost = Some(vh))
+
+  override def withUrl(url: String): Self = this.copy(url = url, uri = URI.create(url))
 
   override def withQueryStringParameters(parameters: (String, String)*): Self = {
     val additional: Iterable[(String, Seq[String])] = parameters.groupBy(_._1).map {
