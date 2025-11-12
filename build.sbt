@@ -8,25 +8,27 @@ licenses += ("Apache-2.0", url("https://spdx.org/licenses/Apache-2.0"))
 
 description := "Scala client for Mandrill api"
 
-scalaVersion := "2.12.2"
+scalaVersion := "2.12.16"
 
-crossScalaVersions := Seq("2.11.11", "2.12.2")
+crossScalaVersions := Seq("2.12.16", "2.13.15")
 
 scalacOptions := Seq(
   "-feature", "-unchecked", "-deprecation", "-encoding", "utf8"
 )
 
-parallelExecution in Test := true
+Test / parallelExecution := true
+
+dependencyOverrides += "org.scala-lang.modules" %% "scala-java8-compat" % "1.0.2"
 
 libraryDependencies ++= {
   Seq(
-    "com.typesafe.play" %% "play-ahc-ws-standalone"       % "1.0.1",
-    "com.typesafe.play" %% "play-ws-standalone-json"      % "1.0.1",
+    "com.typesafe.play" %% "play-ahc-ws-standalone"       % "2.1.10",
+    "com.typesafe.play" %% "play-ws-standalone-json"      % "2.1.10",
     "org.slf4j"         % "slf4j-api"                     % "1.7.25"
   ) ++ Seq(
-    "org.scalatest"            %%  "scalatest"       % "3.0.1"   % "test",
-    "com.typesafe.play"        %%  "play-test"       % "2.6.1"   % "test",
-    "org.slf4j"                %   "slf4j-simple"    % "1.7.21"  % "test"
+    "org.scalatest"            %%  "scalatest"       % "3.0.8"   % "test",
+    "com.typesafe.play"        %%  "play-test"       % "2.8.19"   % "test",
+    "org.slf4j"                %   "slf4j-simple"    % "2.0.17"  % "test"
   )
 }
 
@@ -36,7 +38,7 @@ githubRepository := "scamandrill"
 
 githubTokenSource := TokenSource.GitConfig("github.token")
 
-publishArtifact in Test := false
+Test / publishArtifact := false
 
 publishMavenStyle := true
 

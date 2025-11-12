@@ -47,7 +47,8 @@ trait MandrillSpec extends FlatSpec with Matchers with SimpleLogger with ScalaFu
                 status = 500,
                 headers = Map(),
                 statusText = "INTERNAL_SERVER_ERROR",
-                cookies = Seq()
+                cookies = Seq(),
+                uri = request.uri
               ).asInstanceOf[StandaloneWSResponse]
             }
         } else if (raiseException) {
@@ -66,7 +67,8 @@ trait MandrillSpec extends FlatSpec with Matchers with SimpleLogger with ScalaFu
                     status = 200,
                     headers = Map(),
                     statusText = "OK",
-                    cookies = Seq()
+                    cookies = Seq(),
+                    uri = request.uri
                   ).asInstanceOf[StandaloneWSResponse]
                 }
               case _ => fail("Unable to verify the request content")
@@ -80,7 +82,8 @@ trait MandrillSpec extends FlatSpec with Matchers with SimpleLogger with ScalaFu
               status = 200,
               headers = Map(),
               statusText = "OK",
-              cookies = Seq()
+              cookies = Seq(),
+              uri = request.uri
             ).asInstanceOf[StandaloneWSResponse]
           }
         }

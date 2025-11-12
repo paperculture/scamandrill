@@ -1,5 +1,6 @@
 package io.github.scamandrill
 
+import java.net.URI
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
 import play.api.libs.ws.{StandaloneWSResponse, WSCookie}
@@ -9,7 +10,8 @@ case class MockWSResponse(
   status: Int,
   headers: Map[String, Seq[String]],
   statusText: String,
-  cookies: Seq[WSCookie]
+  cookies: Seq[WSCookie],
+  uri: URI
 ) extends StandaloneWSResponse {
   override def underlying[T]: T = ???
 
